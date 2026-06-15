@@ -8,9 +8,9 @@ espressoCore = "3.7.0"
 appcompat = "1.7.1"
 lifecycleViewmodelCompose = "2.10.0"
 material = "1.14.0"
-activity = "1.13.0"
+activity= "1.13.0"
 constraintlayout = "2.2.1"
-# Database references
+#Database references
 kotlin = "2.2.20"
 ksp = "2.2.20-2.0.4"
 room = "2.8.4"
@@ -32,9 +32,9 @@ room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
-
 # Database plugins
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }

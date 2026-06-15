@@ -6,7 +6,11 @@ plugins {
 
 android {
     namespace = "com.example.proyectofinalmfga"
-    compileSdk = 35
+    compileSdk {
+        version = release(36) {
+            minorApiLevel = 1
+        }
+    }
 
 
     defaultConfig {
@@ -28,7 +32,6 @@ android {
             )
         }
     }
-
     buildFeatures {
         viewBinding = true
     }
@@ -36,6 +39,10 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    kotlinOptions {
+        jvmTarget = "11"
     }
 
 }
@@ -61,4 +68,6 @@ dependencies {
     implementation(libs.androidx.activity.ktx.v193)
     // For Jetpack Compose (if applicable)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
+
+
 }
