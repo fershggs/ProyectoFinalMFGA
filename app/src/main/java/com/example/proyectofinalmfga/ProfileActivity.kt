@@ -1,5 +1,6 @@
 package com.example.proyectofinalmfga
 
+import android.content.Context
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
@@ -28,10 +29,22 @@ class ProfileActivity : AppCompatActivity() {
         val nombreJugadora = intent.getStringExtra("EXTRA_JUGADORA") ?: "Jugador"
         tvwPAName.text = nombreJugadora
 
+        // Inicializar SharedPreferences
+        val sharedPreferences = getSharedPreferences("PreferenciaConexiones", Context.MODE_PRIVATE)
+        // Se crea una clave única por jugadora (ej: "CONEXION_Ana")
+        val llaveUsuario = "CONEXION_$nombreJugadora"
+        // 4Leer la última conexión guardada antes de actualizarla
+        val ultimaConexionGuardada = sharedPreferences.getString(llaveUsuario, "Primera vez que inicias sesión")
+
+        tvwConection.text = "Última conexión registrada:\n$ultimaConexionGuardada"
+
+        // acutalizar: Obtener la fecha y hora de este instante preciso
         val formatoFecha = SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault())
-        val fechaActual = formatoFecha.format(Date())
+        val fechaActualTexto = formatoFecha.format(Date())
 
-        tvwConection.text = "Última conexión: $fechaActual"
-
+        // Guardar la nueva fecha en SharedPreferences para la próxima vez que inicie sesión
+        val editor = sharedPreferences.edit()
+        editor.putString(llaveUsuario, fechaActualTexto)
+        editor.apply() // Se guarda de forma asíncrona en segundo plano
     }
 }
