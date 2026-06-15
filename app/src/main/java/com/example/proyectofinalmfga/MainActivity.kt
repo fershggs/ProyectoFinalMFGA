@@ -45,6 +45,17 @@ class MainActivity : AppCompatActivity() {
             lifecycleScope.launch(Dispatchers.IO) {
                 val jugadoraEncontrada = jugadoraDao.loginJugadora(nombreInput, contrasenaInput)
 
+                withContext(Dispatchers.Main) {
+                    if (jugadoraEncontrada != null) {
+
+                        val intent = Intent(this@MainActivity, ProfileActivity::class.java)
+                        //Esto para cambiar el jugadoraEncontrada.nombre por la variable real que contenga el nombre
+                        intent.putExtra("EXTRA_JUGADORA", jugadoraEncontrada.nombre)
+                        startActivity(intent)
+                    } else {
+                        Toast.makeText(this@MainActivity, "Las credenciales no son correctas", Toast.LENGTH_SHORT).show()
+                    }
+                }
             }
         }
     }
