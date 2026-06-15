@@ -11,6 +11,7 @@ import com.example.proyectofinalmfga.databinding.ActivitySignUpBinding
 import com.example.proyectofinalmfga.model.Jugadora
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import kotlin.toString
 
 class SignUpActivity : AppCompatActivity() {
@@ -39,11 +40,23 @@ class SignUpActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            val jugadora = Jugadora(0, nombreInput, contrasenaInput)
-
-            // Inserción directa en la base de datos en segundo plano
             lifecycleScope.launch(Dispatchers.IO) {
-                jugadoraDao.registrarJugadora(jugadora)
+                val jugadorExistente = jugadoraDao.loginJugadora(nombreInput, contrasenaInput)
+                if (jugadorExistente != null) {
+                    // SI YA EXISTE: Volvemos al hilo principal a mandar el Toast de aviso
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(this@SignUpActivity, "Ya está registrado", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    // SI NO EXISTE: Creamos el objeto y lo guardamos limpiamente
+                    val nuevaJugadora = Jugadora(nombre = nombreInput, password = contrasenaInput)
+                    jugadoraDao.registrarJugadora(nuevaJugadora)
+                    // Volvemos al hilo principal para avisar del éxito y cerrar la pantalla
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(this@SignUpActivity, "Registro exitoso", Toast.LENGTH_SHORT).show()
+                        finish() // Cierra SignUpActivity y regresa a MainActivity
+                    }
+                }
             }
         }
     }
