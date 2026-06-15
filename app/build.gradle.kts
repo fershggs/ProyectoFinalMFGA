@@ -1,14 +1,13 @@
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.ksp)
 }
 
 android {
     namespace = "com.example.proyectofinalmfga"
-    compileSdk {
-        version = release(36) {
-            minorApiLevel = 1
-        }
-    }
+    compileSdk = 35
+
 
     defaultConfig {
         applicationId = "com.example.proyectofinalmfga"
@@ -38,11 +37,12 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
 }
 
 dependencies {
-    //Corregí la implementación para que funcionara el xml de inicio de sesión
-    implementation("androidx.core:core-ktx:1.13.1")
+    //implementation("androidx.core:core-ktx:1.13.1")
+    implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
@@ -50,4 +50,15 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    // Room runtime and coroutine extensions
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    // Process Room annotations with KSP
+    ksp(libs.room.compiler)
+    implementation(libs.androidx.lifecycle.viewmodel)
+    // For Activities
+    implementation(libs.androidx.activity.ktx.v193)
+    // For Jetpack Compose (if applicable)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
 }
