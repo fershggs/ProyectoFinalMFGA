@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo_login2"
+    tools:context=".SignUpActivity">
+
+
+    <View
+        android:id="@+id/viewSU"
+        android:layout_width="305dp"
+        android:layout_height="348dp"
+        android:background="@drawable/forma_fondo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.498" />
+
+    <TextView
+        android:id="@+id/tvwSURegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="Registro"
+        android:textColor="#1F1D1D"
+        android:textSize="45sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/ettSUUser"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewSU" />
+
+    <EditText
+        android:id="@+id/ettSUPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/black"
+        android:ems="10"
+        android:hint="Contraseña"
+        android:inputType="textPassword"
+        android:textColor="#0F0E0E"
+        app:layout_constraintBottom_toTopOf="@+id/btnSURegister"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ettSUUser" />
+
+    <Button
+        android:id="@+id/btnSURegister"
+        style="@style/Widget.AppCompat.Button.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="Registrarse"
+        android:textColor="#1F1D1D"
+        app:backgroundTint="#12B30C"
+        app:layout_constraintBottom_toTopOf="@+id/viewSU"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ettSUPassword" />
+
+    <EditText
+        android:id="@+id/ettSUUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/black"
+        android:ems="10"
+        android:hint="Nombre jugadora"
+        android:inputType="text"
+        android:textColor="#0D0000"
+        app:layout_constraintBottom_toTopOf="@+id/ettSUPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvwSURegister" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
