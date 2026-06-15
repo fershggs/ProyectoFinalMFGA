@@ -42,6 +42,12 @@ class MainActivity : AppCompatActivity() {
             val nombreInput = binding.ettUser.text.toString().trim()
             val contrasenaInput = binding.ettPassword.text.toString().trim()
 
+            // Validación simple de campos vacíos antes de ir a la BD
+            if (nombreInput.isEmpty() || contrasenaInput.isEmpty()) {
+                Toast.makeText(this, "Por favor, llena todos los campos", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             lifecycleScope.launch(Dispatchers.IO) {
                 val jugadoraEncontrada = jugadoraDao.loginJugadora(nombreInput, contrasenaInput)
 
