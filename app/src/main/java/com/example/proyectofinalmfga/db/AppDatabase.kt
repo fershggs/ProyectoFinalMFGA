@@ -10,5 +10,5 @@ import com.example.proyectofinalmfga.model.Jugadora
 @Database(entities = [Jugadora::class], version= 1)
 @TypeConverters(Converters::class)
 abstract class AppDatabase: RoomDatabase() {
-    abstract fun usuarioDao(): JugadoraDao
+    abstract fun JugadoraDao(): JugadoraDao
 }
