@@ -5,14 +5,28 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/soccer_matches"
     tools:context=".MatchesActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="219dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="62dp"
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="308dp"
+        android:layout_height="638dp"
+        android:background="@drawable/forma_fondo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvwMatches"
+        android:layout_width="250dp"
+        android:layout_height="513dp"
+        android:layout_marginBottom="62dp"
+        app:layout_constraintBottom_toTopOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvwPartidos"
         app:layout_constraintVertical_bias="0.723" />
@@ -22,13 +36,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="88dp"
-        android:layout_marginBottom="14dp"
         android:text="Partidos"
         android:textColor="#1F1D1D"
         android:textSize="45sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+        app:layout_constraintBottom_toTopOf="@+id/rvwMatches"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

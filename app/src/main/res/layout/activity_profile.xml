@@ -5,57 +5,82 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5"
-    tools:context=".ProfileActivity">
+    tools:context=".ProfileActivity"
+    android:background="@drawable/soccer_matches">
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="314dp"
+        android:layout_height="539dp"
+        android:background="@drawable/forma_fondo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvwPAGreeting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="4dp"
+        android:text="Hola:"
+        android:textSize="45sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="@+id/view"
+        app:layout_constraintBottom_toTopOf="@+id/tvwPAName"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <TextView
         android:id="@+id/tvwPAName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="169dp"
-        android:layout_marginBottom="35dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="16dp"
         android:text="Jugador"
-        android:textSize="45sp"
-        android:textStyle="bold"
+        android:textSize="35sp"
+        app:layout_constraintTop_toBottomOf="@+id/tvwPAGreeting"
         app:layout_constraintBottom_toTopOf="@+id/imvImage"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="@+id/view" />
 
     <ImageView
         android:id="@+id/imvImage"
         android:layout_width="226dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="264dp"
-        android:layout_marginBottom="130dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnPartidos"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_height="205dp"
+        app:layout_constraintTop_toBottomOf="@+id/tvwPAName"
+        app:layout_constraintBottom_toTopOf="@+id/tvwConection"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="@+id/view"
         app:srcCompat="@drawable/profile_icon" />
 
     <TextView
         android:id="@+id/tvwConection"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="171dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:textSize="20sp"
         android:text="Última conexión"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imvImage" />
+        app:layout_constraintTop_toBottomOf="@+id/imvImage"
+        app:layout_constraintBottom_toTopOf="@+id/btnPartidos"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="@+id/view" />
 
     <Button
         android:id="@+id/btnPartidos"
         style="@style/Widget.AppCompat.Button.Small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="85dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:text="Ver partidos"
         android:textColor="#1F1D1D"
         app:backgroundTint="#12B30C"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imvImage" />
+        app:layout_constraintTop_toBottomOf="@+id/tvwConection"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="@+id/view" />
 </androidx.constraintlayout.widget.ConstraintLayout>
