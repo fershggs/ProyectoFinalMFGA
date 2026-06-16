@@ -1,7 +1,9 @@
 package com.example.proyectofinalmfga
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -46,5 +48,13 @@ class ProfileActivity : AppCompatActivity() {
         val editor = sharedPreferences.edit()
         editor.putString(llaveUsuario, fechaActualTexto)
         editor.apply() // Se guarda de forma asíncrona en segundo plano
+
+        val btnVerPartidos = findViewById<Button>(R.id.btnPartidos)
+
+        btnVerPartidos.setOnClickListener {
+            // El Intent es el mensajero. Le decimos: "Ve de esta pantalla (this) a PartidosActivity"
+            val intent = Intent(this, MatchesActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

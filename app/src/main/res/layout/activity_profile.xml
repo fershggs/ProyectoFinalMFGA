@@ -26,11 +26,12 @@
         android:id="@+id/imvImage"
         android:layout_width="226dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="73dp"
-        app:layout_constraintBottom_toTopOf="@+id/tvwConection"
+        android:layout_marginTop="264dp"
+        android:layout_marginBottom="130dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnPartidos"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvwPAName"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/profile_icon" />
 
     <TextView
@@ -39,6 +40,20 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="171dp"
         android:text="Última conexión"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imvImage" />
+
+    <Button
+        android:id="@+id/btnPartidos"
+        style="@style/Widget.AppCompat.Button.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="85dp"
+        android:text="Ver partidos"
+        android:textColor="#1F1D1D"
+        app:backgroundTint="#12B30C"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
