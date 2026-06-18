@@ -12,6 +12,7 @@ import com.example.proyectofinalmfga.databinding.ActivityMainBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kotlin.toString
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         val db = MyApplication.getDatabase(this)
-        val playerDao = db.PlayerDao()
+        val jugadoraDao = db.JugadoraDao()
 
 
         binding.btnRegister.setOnClickListener {
@@ -38,23 +39,22 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnLogin.setOnClickListener {
-            val nameInput = binding.ettUser.text.toString().trim()
-            val passwordInput = binding.ettPassword.text.toString().trim()
+            val nombreInput = binding.ettUser.text.toString().trim()
+            val contrasenaInput = binding.ettPassword.text.toString().trim()
 
-            if (nameInput.isEmpty() || passwordInput.isEmpty()) {
+            if (nombreInput.isEmpty() || contrasenaInput.isEmpty()) {
                 Toast.makeText(this, "Por favor, llena todos los campos", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             lifecycleScope.launch(Dispatchers.IO) {
-                val playerFound = playerDao.loginPlayer(nameInput, passwordInput)
+                val jugadoraEncontrada = jugadoraDao.loginJugadora(nombreInput, contrasenaInput)
 
                 withContext(Dispatchers.Main) {
-                    if (playerFound != null) {
+                    if (jugadoraEncontrada != null) {
 
                         val intent = Intent(this@MainActivity, ProfileActivity::class.java)
-
-                        intent.putExtra("EXTRA_JUGADORA", playerFound.name)
+                        intent.putExtra("EXTRA_JUGADORA", jugadoraEncontrada.nombre)
                         startActivity(intent)
                     } else {
                         Toast.makeText(this@MainActivity, "Las credenciales no son correctas", Toast.LENGTH_SHORT).show()

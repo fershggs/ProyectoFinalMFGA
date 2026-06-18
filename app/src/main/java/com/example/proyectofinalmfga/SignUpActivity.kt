@@ -8,10 +8,11 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.proyectofinalmfga.databinding.ActivitySignUpBinding
-import com.example.proyectofinalmfga.model.Player
+import com.example.proyectofinalmfga.model.Jugadora
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kotlin.toString
 
 class SignUpActivity : AppCompatActivity() {
 
@@ -28,25 +29,25 @@ class SignUpActivity : AppCompatActivity() {
             insets
         }
         val db = MyApplication.getDatabase(this)
-        val playerDao = db.PlayerDao()
+        val jugadoraDao = db.JugadoraDao()
 
         binding.btnSURegister.setOnClickListener {
-            val nameInput = binding.ettSUUser.text.toString()
-            val passwordInput = binding.ettSUPassword.text.toString()
-            if (nameInput.isEmpty() || passwordInput.isEmpty()) {
+            val nombreInput = binding.ettSUUser.text.toString()
+            val contrasenaInput = binding.ettSUPassword.text.toString()
+            if (nombreInput.isEmpty() || contrasenaInput.isEmpty()) {
                 Toast.makeText(this, "Por favor, llena todos los campos", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             lifecycleScope.launch(Dispatchers.IO) {
-                val jugadorExistente = playerDao.loginPlayer(nameInput, passwordInput)
+                val jugadorExistente = jugadoraDao.loginJugadora(nombreInput, contrasenaInput)
                 if (jugadorExistente != null) {
                     withContext(Dispatchers.Main) {
                         Toast.makeText(this@SignUpActivity, "Ya está registrado", Toast.LENGTH_SHORT).show()
                     }
                 } else {
-                    val nuevaPlayer = Player(name = nameInput, password = passwordInput)
-                    playerDao.registerPlayer(nuevaPlayer)
+                    val nuevaJugadora = Jugadora(nombre = nombreInput, password = contrasenaInput)
+                    jugadoraDao.registrarJugadora(nuevaJugadora)
                     withContext(Dispatchers.Main) {
                         Toast.makeText(this@SignUpActivity, "Registro exitoso", Toast.LENGTH_SHORT).show()
                         finish()

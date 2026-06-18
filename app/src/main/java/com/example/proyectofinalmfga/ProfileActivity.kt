@@ -31,6 +31,7 @@ class ProfileActivity : AppCompatActivity() {
         val nombreJugadora = intent.getStringExtra("EXTRA_JUGADORA") ?: "Jugador"
         tvwPAName.text = nombreJugadora
 
+
         val sharedPreferences = getSharedPreferences("PreferenciaConexiones", Context.MODE_PRIVATE)
         val llaveUsuario = "CONEXION_$nombreJugadora"
         val ultimaConexionGuardada = sharedPreferences.getString(llaveUsuario, "Primera vez que inicias sesión")

@@ -4,11 +4,11 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.proyectofinalmfga.converters.Converters
-import com.example.proyectofinalmfga.dao.PlayerDao
-import com.example.proyectofinalmfga.model.Player
+import com.example.proyectofinalmfga.dao.JugadoraDao
+import com.example.proyectofinalmfga.model.Jugadora
 
-@Database(entities = [Player::class], version= 1)
+@Database(entities = [Jugadora::class], version= 1)
 @TypeConverters(Converters::class)
 abstract class AppDatabase: RoomDatabase() {
-    abstract fun PlayerDao(): PlayerDao
+    abstract fun JugadoraDao(): JugadoraDao
 }
