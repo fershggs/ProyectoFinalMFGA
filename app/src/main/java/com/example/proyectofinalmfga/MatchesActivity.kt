@@ -37,7 +37,8 @@ class MatchesActivity : AppCompatActivity() {
             Match("Pachuca", "12/12/2023 - 20:00", "Estadio Hidalgo"),
             Match("Cruz Azul", "19/12/2023 - 16:00", "Instalaciones La Noria"),
             Match("Pumas UNAM", "09/01/2024 - 12:00", "Estadio Olímpico Universitario"),
-            Match("Toluca", "16/01/2024 - 17:00", "Estadio Nemesio Díez")
+            Match("Toluca", "16/01/2024 - 17:00", "Estadio Nemesio Díez"),
+            Match("Atlético SL", "23/01/2024 - 16:00", "Estadio Alfonso Lastras")
         )
     }
 }

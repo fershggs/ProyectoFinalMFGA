@@ -1,7 +1,7 @@
 package com.example.proyectofinalmfga
 
 data class Match (
-    val equipoRival: String,
-    val fecha: String,
-    val cancha: String
+    val rival: String,
+    val date: String,
+    val field: String
     )

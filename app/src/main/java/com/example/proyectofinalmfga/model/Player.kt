@@ -2,10 +2,10 @@ package com.example.proyectofinalmfga.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-@Entity("jugadoras_table")
-data class Jugadora (
+@Entity("player_table")
+data class Player (
     @PrimaryKey(autoGenerate = true)
     val id: Int= 0,
-    val nombre: String,
+    val name: String,
     val password: String
 )

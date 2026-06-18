@@ -8,11 +8,10 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.proyectofinalmfga.databinding.ActivitySignUpBinding
-import com.example.proyectofinalmfga.model.Jugadora
+import com.example.proyectofinalmfga.model.Player
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import kotlin.toString
 
 class SignUpActivity : AppCompatActivity() {
 
@@ -29,32 +28,28 @@ class SignUpActivity : AppCompatActivity() {
             insets
         }
         val db = MyApplication.getDatabase(this)
-        val jugadoraDao = db.JugadoraDao()
+        val playerDao = db.PlayerDao()
 
         binding.btnSURegister.setOnClickListener {
-            val nombreInput = binding.ettSUUser.text.toString()
-            val contrasenaInput = binding.ettSUPassword.text.toString()
-            // Validación: Evitar que guarden registros vacíos
-            if (nombreInput.isEmpty() || contrasenaInput.isEmpty()) {
+            val nameInput = binding.ettSUUser.text.toString()
+            val passwordInput = binding.ettSUPassword.text.toString()
+            if (nameInput.isEmpty() || passwordInput.isEmpty()) {
                 Toast.makeText(this, "Por favor, llena todos los campos", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             lifecycleScope.launch(Dispatchers.IO) {
-                val jugadorExistente = jugadoraDao.loginJugadora(nombreInput, contrasenaInput)
+                val jugadorExistente = playerDao.loginPlayer(nameInput, passwordInput)
                 if (jugadorExistente != null) {
-                    // SI YA EXISTE: Volvemos al hilo principal a mandar el Toast de aviso
                     withContext(Dispatchers.Main) {
                         Toast.makeText(this@SignUpActivity, "Ya está registrado", Toast.LENGTH_SHORT).show()
                     }
                 } else {
-                    // SI NO EXISTE: Creamos el objeto y lo guardamos limpiamente
-                    val nuevaJugadora = Jugadora(nombre = nombreInput, password = contrasenaInput)
-                    jugadoraDao.registrarJugadora(nuevaJugadora)
-                    // Volvemos al hilo principal para avisar del éxito y cerrar la pantalla
+                    val nuevaPlayer = Player(name = nameInput, password = passwordInput)
+                    playerDao.registerPlayer(nuevaPlayer)
                     withContext(Dispatchers.Main) {
                         Toast.makeText(this@SignUpActivity, "Registro exitoso", Toast.LENGTH_SHORT).show()
-                        finish() // Cierra SignUpActivity y regresa a MainActivity
+                        finish()
                     }
                 }
             }

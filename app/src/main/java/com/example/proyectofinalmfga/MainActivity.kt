@@ -12,7 +12,6 @@ import com.example.proyectofinalmfga.databinding.ActivityMainBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import kotlin.toString
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         val db = MyApplication.getDatabase(this)
-        val jugadoraDao = db.JugadoraDao()
+        val playerDao = db.PlayerDao()
 
 
         binding.btnRegister.setOnClickListener {
@@ -39,24 +38,23 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnLogin.setOnClickListener {
-            val nombreInput = binding.ettUser.text.toString().trim()
-            val contrasenaInput = binding.ettPassword.text.toString().trim()
+            val nameInput = binding.ettUser.text.toString().trim()
+            val passwordInput = binding.ettPassword.text.toString().trim()
 
-            // Validación simple de campos vacíos antes de ir a la BD
-            if (nombreInput.isEmpty() || contrasenaInput.isEmpty()) {
+            if (nameInput.isEmpty() || passwordInput.isEmpty()) {
                 Toast.makeText(this, "Por favor, llena todos los campos", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             lifecycleScope.launch(Dispatchers.IO) {
-                val jugadoraEncontrada = jugadoraDao.loginJugadora(nombreInput, contrasenaInput)
+                val playerFound = playerDao.loginPlayer(nameInput, passwordInput)
 
                 withContext(Dispatchers.Main) {
-                    if (jugadoraEncontrada != null) {
+                    if (playerFound != null) {
 
                         val intent = Intent(this@MainActivity, ProfileActivity::class.java)
-                        //Esto para cambiar el jugadoraEncontrada.nombre por la variable real que contenga el nombre
-                        intent.putExtra("EXTRA_JUGADORA", jugadoraEncontrada.nombre)
+
+                        intent.putExtra("EXTRA_JUGADORA", playerFound.name)
                         startActivity(intent)
                     } else {
                         Toast.makeText(this@MainActivity, "Las credenciales no son correctas", Toast.LENGTH_SHORT).show()
